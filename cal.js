@@ -1,6 +1,16 @@
 let firstNumber = null;
 let secondNumber = null;
 let operator = null;
+const display = document.querySelector('.display');
+const buttons = document.querySelector('.button');
+console.log(buttons);
+
+buttons.addEventListener('click', (e => {
+    display.textContent = 'hi'
+    
+}))
+
+
 
 function add(a, b) {
     return a + b;
@@ -39,4 +49,4 @@ function calculate(operation, a, b) {
     };
 };
 
-console.log(calculate('+', 5, 5))
+

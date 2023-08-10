@@ -1,0 +1,38 @@
+html
+{
+    height: 100%;
+    width: 100%;
+    box-sizing:border-box;
+}
+body{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    display: flex;
+    border: 10px solid red;
+    border-radius: 5%;
+}
+
+.calculator{
+    border: 2px solid black;
+    height: 99%;
+
+}
+
+.display{
+    border: 2px solid green;
+    padding: 40px;
+}
+.buttDiv{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    column-gap: 10px;
+    row-gap: 10px;
+    padding-top: 10px;
+}
