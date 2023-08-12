@@ -2,14 +2,23 @@ let firstNumber = null;
 let secondNumber = null;
 let operator = null;
 const display = document.querySelector('.display');
-const buttons = document.querySelector('.button');
-console.log(buttons);
+const buttons = document.querySelectorAll('.buttons');
+const clear = document.querySelector('.clearButton');
 
-buttons.addEventListener('click', (e => {
-    display.textContent = 'hi'
-    
-}))
 
+
+buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        display.textContent += button.value;
+        firstNumber = Number(display.textContent);
+        
+    });
+});
+
+clear.addEventListener('click', (e) => {
+    display.textContent = ' ';
+    firstNumber = null;
+})
 
 
 function add(a, b) {
