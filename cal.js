@@ -1,11 +1,32 @@
-let firstNumber = null;
-let secondNumber = null;
+let currentNumber = null;
+let previousNumber = null;
 let operator = null;
-const display = document.querySelector('.display');
-const buttons = document.querySelectorAll('.buttons');
+const currentDisplay = document.querySelector('.currentDisplay');
+const previousDisplay = document.querySelector('.previousDisplay');
+const numbers = document.querySelectorAll('.numButtons');
+const operators = document.querySelectorAll('.opButtons');
+const equals = document.querySelector('.equalButton');
 const clear = document.querySelector('.clearButton');
 
+numbers.forEach((number) => number.addEventListener('click', (e) => {
+    currentDisplay.textContent += number.value;
+    currentNumber = Number(currentDisplay.textContent);
+}));
 
+operators.forEach((op) => op.addEventListener('click', (e) => {
+    operator = op.value;
+    previousNumber = currentNumber;
+    currentNumber = null;
+    currentDisplay.textContent = ' ';
+    previousDisplay.textContent += previousNumber + ' ' + op.value;
+    
+}));
+
+equals.addEventListener('click', (e) => {
+    previousDisplay.textContent = previousNumber + ' ' + operator + ' ' + currentNumber;
+    let result = calculate(operator, previousNumber, currentNumber);
+    currentDisplay.textContent = result;
+});
 
 function add(a, b) {
     return a + b;
@@ -44,27 +65,11 @@ function calculate(operation, a, b) {
     };
 };
 
-buttons.forEach((button) => {
-    button.addEventListener('click', (e) => {
-        display.textContent += button.value;
-        if(button.id === 'num' && button.id !=='op' && button.id !== 'equal') {
-            firstNumber = Number(display.textContent);
-        }
-        if(button.id === 'op') {
-            operator = button.value;
-        }
-        if(firstNumber !== null && button.id !== 'op' && button.id !== 'equal') {
-            secondNumber = button.value;
-        }
-    });
-});
-
-
-
 clear.addEventListener('click', (e) => {
-    display.textContent = ' ';
-    firstNumber = null;
-    secondNumber = null;
+    currentDisplay.textContent = '';
+    previousDisplay.textContent = ''
+    currentNumber = null;
+    previousNumber = null;
     operator = null;
 })
 
