@@ -7,20 +7,6 @@ const clear = document.querySelector('.clearButton');
 
 
 
-buttons.forEach((button) => {
-    button.addEventListener('click', (e) => {
-        display.textContent += button.value;
-        firstNumber = Number(display.textContent);
-        
-    });
-});
-
-clear.addEventListener('click', (e) => {
-    display.textContent = ' ';
-    firstNumber = null;
-})
-
-
 function add(a, b) {
     return a + b;
 };
@@ -58,4 +44,27 @@ function calculate(operation, a, b) {
     };
 };
 
+buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        display.textContent += button.value;
+        if(button.id === 'num' && button.id !=='op' && button.id !== 'equal') {
+            firstNumber = Number(display.textContent);
+        }
+        if(button.id === 'op') {
+            operator = button.value;
+        }
+        if(firstNumber !== null && button.id !== 'op' && button.id !== 'equal') {
+            secondNumber = button.value;
+        }
+    });
+});
+
+
+
+clear.addEventListener('click', (e) => {
+    display.textContent = ' ';
+    firstNumber = null;
+    secondNumber = null;
+    operator = null;
+})
 
