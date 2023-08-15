@@ -59,3 +59,15 @@ body{
     border-radius: 40%;
     font-size:larger;
 }
+.clearButton {
+    border-radius: 20%;
+    margin-top: 10px;
+}
+.opButtons,
+.equalButton{
+    background-color: rgb(156, 156, 3);
+}
+
+.numButtons{
+    background-color:rgb(50, 50, 241);
+}
