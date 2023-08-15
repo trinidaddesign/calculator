@@ -1,5 +1,6 @@
 let currentNumber = null;
 let previousNumber = null;
+let storedNumber = null;
 let operator = null;
 const currentDisplay = document.querySelector('.currentDisplay');
 const previousDisplay = document.querySelector('.previousDisplay');
@@ -19,14 +20,28 @@ operators.forEach((op) => op.addEventListener('click', (e) => {
     currentNumber = null;
     currentDisplay.textContent = ' ';
     previousDisplay.textContent += previousNumber + ' ' + op.value;
+
     
 }));
 
 equals.addEventListener('click', (e) => {
     previousDisplay.textContent = previousNumber + ' ' + operator + ' ' + currentNumber;
     let result = calculate(operator, previousNumber, currentNumber);
-    currentDisplay.textContent = result;
+    previousDisplay.textContent = '=' + ' ' + result;
+    currentDisplay.textContent = '';
+    storedNumber = result;
+    operator = null;
+
 });
+
+operators.forEach((op) => op.addEventListener('click', (e) => {
+    if(storedNumber != null) {
+        operator = op.value;
+        previousNumber = storedNumber;
+        previousDisplay.textContent = previousNumber + ' ' + operator;
+    }
+}))
+
 
 function add(a, b) {
     return a + b;
@@ -70,6 +85,7 @@ clear.addEventListener('click', (e) => {
     previousDisplay.textContent = ''
     currentNumber = null;
     previousNumber = null;
+    storedNumber = null;
     operator = null;
 })
 
