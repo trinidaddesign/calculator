@@ -9,6 +9,20 @@ const operators = document.querySelectorAll('.opButtons');
 const equals = document.querySelector('.equalButton');
 const clear = document.querySelector('.clearButton');
 
+const cal = (function(){
+    const add = (a,b) => a + b
+    const subtract = (a,b) => a - b
+    const multiply = (a,b) => a * b
+    const divide = (a,b) => {
+        if(b === 0){
+            return 'Nope'
+        }else{
+            return a / b
+        }//closes if else
+    }//closes divide
+    return {add, subtract, multiply, divide}
+})()
+
 numbers.forEach((number) => number.addEventListener('click', (e) => {
     currentDisplay.textContent += number.value;
     currentNumber = Number(currentDisplay.textContent);
@@ -42,40 +56,19 @@ operators.forEach((op) => op.addEventListener('click', (e) => {
     }
 }))
 
-
-function add(a, b) {
-    return a + b;
-};
-
-function subtract(a ,b) {
-    return a - b;
-};
-
-function multiply(a, b) {
-    return a * b;
-}
-
-function divide(a, b) {
-    if(b === 0) {
-        return 'NOPE'
-    }else {
-        return a / b;
-    };
-};
-
 function calculate(operation, a, b) {
     switch(operation) {
         case '+':
-            return add(a, b)
+            return cal.add(a, b)
             break;
         case '-':
-            return subtract(a, b)
+            return cal.subtract(a, b)
             break;
         case '*':
-            return multiply(a, b)
+            return cal.multiply(a, b)
             break;
         case '/':
-            return divide(a, b)
+            return cal.divide(a, b)
             break;
     };
 };
